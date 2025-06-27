@@ -13,7 +13,9 @@ import ResetPassword from "./pages/auth/ResetPassword";
 import { Toaster } from "react-hot-toast";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion as Motion } from "framer-motion";
+import Policy from "./pages/Policy";
+import TermsOfUse from "./pages/TermsOfUse";
 
 // Animation variants
 const pageVariants = {
@@ -46,7 +48,7 @@ const AnimatedRoutes = () => {
         <Route
           path="/"
           element={
-            <motion.div
+            <Motion.div
               initial="initial"
               animate="in"
               exit="out"
@@ -54,13 +56,13 @@ const AnimatedRoutes = () => {
               transition={pageTransition}
             >
               <LandingPage />
-            </motion.div>
+            </Motion.div>
           }
         />
         <Route
           path="/login"
           element={
-            <motion.div
+            <Motion.div
               initial="initial"
               animate="in"
               exit="out"
@@ -68,13 +70,13 @@ const AnimatedRoutes = () => {
               transition={pageTransition}
             >
               <LoginPage />
-            </motion.div>
+            </Motion.div>
           }
         />
         <Route
           path="/signup"
           element={
-            <motion.div
+            <Motion.div
               initial="initial"
               animate="in"
               exit="out"
@@ -82,13 +84,13 @@ const AnimatedRoutes = () => {
               transition={pageTransition}
             >
               <SignupPage />
-            </motion.div>
+            </Motion.div>
           }
         />
         <Route
           path="/forgot-password"
           element={
-            <motion.div
+            <Motion.div
               initial="initial"
               animate="in"
               exit="out"
@@ -96,13 +98,13 @@ const AnimatedRoutes = () => {
               transition={pageTransition}
             >
               <ForgotPassword />
-            </motion.div>
+            </Motion.div>
           }
         />
         <Route
           path="/reset-password"
           element={
-            <motion.div
+            <Motion.div
               initial="initial"
               animate="in"
               exit="out"
@@ -110,7 +112,35 @@ const AnimatedRoutes = () => {
               transition={pageTransition}
             >
               <ResetPassword />
-            </motion.div>
+            </Motion.div>
+          }
+        />
+        <Route
+          path="/privacy-policy"
+          element={
+            <Motion.div
+              initial="initial"
+              animate="in"
+              exit="out"
+              variants={pageVariants}
+              transition={pageTransition}
+            >
+              <Policy />
+            </Motion.div>
+          }
+        />
+        <Route
+          path="/terms-of-use"
+          element={
+            <Motion.div
+              initial="initial"
+              animate="in"
+              exit="out"
+              variants={pageVariants}
+              transition={pageTransition}
+            >
+              <TermsOfUse />
+            </Motion.div>
           }
         />
       </Routes>
@@ -125,7 +155,7 @@ export default function App() {
 
   return (
     <Router>
-      <motion.div
+      <Motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
@@ -134,7 +164,7 @@ export default function App() {
         <AnimatedRoutes />
         <Footer />
         <Toaster position="top-right" />
-      </motion.div>
+      </Motion.div>
     </Router>
   );
 }

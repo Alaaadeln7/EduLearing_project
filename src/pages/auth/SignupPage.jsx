@@ -313,13 +313,19 @@ const SignupPage = () => {
                 </div>
                 <span className="label-text text-sm sm:text-base">
                   I agree with{" "}
-                  <a href="#" className="text-orange-500 underline">
+                  <Link
+                    to="/terms-of-use"
+                    className="text-orange-500 underline"
+                  >
                     Terms of Use
-                  </a>{" "}
+                  </Link>{" "}
                   and{" "}
-                  <a href="#" className="text-orange-500 underline">
+                  <Link
+                    to="/privacy-policy"
+                    className="text-orange-500 underline"
+                  >
                     Privacy Policy
-                  </a>
+                  </Link>
                 </span>
               </label>
               {formik.touched.agree && formik.errors.agree && (
