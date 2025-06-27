@@ -5,7 +5,7 @@ import {
   Route,
   useLocation,
 } from "react-router-dom";
-import LandingPage from "./pages/LandingPage";
+import LandingPage from "./pages/landing/LandingPage";
 import LoginPage from "./pages/auth/LoginPage";
 import SignupPage from "./pages/auth/SignupPage";
 import ForgotPassword from "./pages/auth/ForgotPassword";
