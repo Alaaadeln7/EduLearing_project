@@ -1,7 +1,7 @@
 // RegisterPage.jsx
 import React, { useState } from "react";
 import { useFormik } from "formik";
-import * as Yup from "yup";
+
 import { toast, Toaster } from "react-hot-toast";
 import { Link } from "react-router-dom";
 import {
@@ -16,32 +16,40 @@ import {
   Check,
   MoveLeft,
   MoveRight,
+  Building2,
+  MapPin,
+  Globe,
 } from "lucide-react";
+import { registerValidation } from "../../utils/authValidation";
+import { useAuthStore } from "../../stores/useAuthStore";
 
 const SignupPage = () => {
+  const { register } = useAuthStore((state) => state);
   const [showPassword, setShowPassword] = useState(false);
   const formik = useFormik({
     initialValues: {
-      fullName: "",
+      firstName: "",
+      lastName: "",
       email: "",
       phone: "",
       password: "",
+      street: "",
+      city: "",
+      country: "",
       isStudent: false,
       isInstructor: false,
       agree: false,
     },
-    validationSchema: Yup.object({
-      fullName: Yup.string().required("Name is required"),
-      email: Yup.string().email("Invalid email").required("Email is required"),
-      phone: Yup.string().required("Phone is required"),
-      password: Yup.string()
-        .min(6, "Password must be at least 6 characters")
-        .required("Password is required"),
-      agree: Yup.boolean().oneOf([true], "You must accept the terms"),
-    }),
-    onSubmit: (values, { resetForm }) => {
+    validationSchema: registerValidation,
+    onSubmit: async (values, { resetForm }) => {
       toast.success("Form submitted successfully!");
       console.log(values);
+      try {
+        let res = await register(values);
+        console.log(res);
+      } catch (error) {
+        console.error(error.message);
+      }
       resetForm();
     },
     validateOnChange: true,
@@ -122,24 +130,48 @@ const SignupPage = () => {
             {/* Full Name Input */}
             <div className="space-y-1">
               <label className="text-sm font-medium text-gray-700">
-                Full Name
+                First Name
               </label>
               <div className="input-group flex items-center border border-base-300 rounded-lg overflow-hidden focus-within:border-orange-500">
                 <span className="px-3 text-gray-400">
                   <User size={18} />
                 </span>
                 <input
-                  name="fullName"
+                  name="firstName"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  value={formik.values.fullName}
-                  placeholder="John Doe"
+                  value={formik.values.firstName}
+                  placeholder="John"
                   className="flex-1 py-2 px-1 focus:outline-none"
                 />
               </div>
-              {formik.touched.fullName && formik.errors.fullName && (
+              {formik.touched.firstName && formik.errors.firstName && (
                 <div className="text-red-500 text-sm mt-1">
-                  {formik.errors.fullName}
+                  {formik.errors.firstName}
+                </div>
+              )}
+            </div>
+
+            <div className="space-y-1">
+              <label className="text-sm font-medium text-gray-700">
+                Last Name
+              </label>
+              <div className="input-group flex items-center border border-base-300 rounded-lg overflow-hidden focus-within:border-orange-500">
+                <span className="px-3 text-gray-400">
+                  <User size={18} />
+                </span>
+                <input
+                  name="lastName"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.lastName}
+                  placeholder="Doe"
+                  className="flex-1 py-2 px-1 focus:outline-none"
+                />
+              </div>
+              {formik.touched.lastName && formik.errors.lastName && (
+                <div className="text-red-500 text-sm mt-1">
+                  {formik.errors.lastName}
                 </div>
               )}
             </div>
@@ -189,6 +221,79 @@ const SignupPage = () => {
               {formik.touched.phone && formik.errors.phone && (
                 <div className="text-red-500 text-sm mt-1">
                   {formik.errors.phone}
+                </div>
+              )}
+            </div>
+
+            {/* Street Address Input */}
+            <div className="space-y-1">
+              <label className="text-sm font-medium text-gray-700">
+                Street Address
+              </label>
+              <div className="input-group flex items-center border border-base-300 rounded-lg overflow-hidden focus-within:border-orange-500">
+                <span className="px-3 text-gray-400">
+                  <MapPin size={18} />
+                </span>
+                <input
+                  name="street"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.street}
+                  placeholder="123 Main St"
+                  className="flex-1 py-2 px-1 focus:outline-none"
+                />
+              </div>
+              {formik.touched.street && formik.errors.street && (
+                <div className="text-red-500 text-sm mt-1">
+                  {formik.errors.street}
+                </div>
+              )}
+            </div>
+
+            {/* City Input */}
+            <div className="space-y-1">
+              <label className="text-sm font-medium text-gray-700">City</label>
+              <div className="input-group flex items-center border border-base-300 rounded-lg overflow-hidden focus-within:border-orange-500">
+                <span className="px-3 text-gray-400">
+                  <Building2 className="size-5" />
+                </span>
+                <input
+                  name="city"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.city}
+                  placeholder="New York"
+                  className="flex-1 py-2 px-1 focus:outline-none"
+                />
+              </div>
+              {formik.touched.city && formik.errors.city && (
+                <div className="text-red-500 text-sm mt-1">
+                  {formik.errors.city}
+                </div>
+              )}
+            </div>
+
+            {/* Country Input */}
+            <div className="space-y-1">
+              <label className="text-sm font-medium text-gray-700">
+                Country
+              </label>
+              <div className="input-group flex items-center border border-base-300 rounded-lg overflow-hidden focus-within:border-orange-500">
+                <span className="px-3 text-gray-400">
+                  <Globe size={18} />
+                </span>
+                <input
+                  name="country"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.country}
+                  placeholder="United States"
+                  className="flex-1 py-2 px-1 focus:outline-none"
+                />
+              </div>
+              {formik.touched.country && formik.errors.country && (
+                <div className="text-red-500 text-sm mt-1">
+                  {formik.errors.country}
                 </div>
               )}
             </div>

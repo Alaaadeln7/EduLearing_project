@@ -111,3 +111,77 @@ export const faqData = [
       "We accept all major credit cards, PayPal, and bank transfers. Some regions also support mobile payment options.",
   },
 ];
+
+export const testimonialsData = [
+  {
+    text: "The web design course provided a solid foundation for me. The instructors were knowledgeable and supportive, and the interactive learning environment was engaging. I highly recommend it!",
+    author: "Sarah L",
+    image: "https://i.pravatar.cc/100",
+  },
+  {
+    text: "The UX/UI design course exceeded my expectations. The instructor's expertise and practical assignments helped me improve my design skills. I feel more confident in my career now. Thank you!",
+    author: "Josiah M",
+    image: "https://i.pravatar.cc/400",
+  },
+  {
+    text: "The mobile app development course was fantastic! The step-by-step tutorials and hands-on projects helped me grasp the concepts easily. I'm now building my own app. Great course!",
+    author: "Emily R",
+    image: "https://i.pravatar.cc/300",
+  },
+  {
+    text: "I enrolled in the graphic design course as a beginner, and it was the perfect start. The instructor's guidance and feedback improved my design abilities significantly. I'm grateful for this course!",
+    author: "Michael K",
+    image: "https://i.pravatar.cc/200",
+  },
+];
+
+export const coursesData = [
+  {
+    id: 1,
+    title: "Web Design Fundamentals",
+    description: "Learn the basics of web design with hands-on projects.",
+    instructor: "John Doe",
+    price: 49.99,
+    image: image_1,
+  },
+  {
+    id: 2,
+    title: "Python Programming",
+    description: "Master Python with real-world coding exercises.",
+    instructor: "Jane Smith",
+    price: 59.99,
+    image: image_2,
+  },
+  {
+    id: 3,
+    title: "Graphic Design Basics",
+    description: "Explore graphic design tools and techniques.",
+    instructor: "Emily Johnson",
+    price: 39.99,
+    image: image_1,
+  },
+  {
+    id: 4,
+    title: "Web Design Fundamentals",
+    description: "Learn the basics of web design with hands-on projects.",
+    instructor: "John Doe",
+    price: 49.99,
+    image: image_2,
+  },
+  {
+    id: 5,
+    title: "Web Design Fundamentals",
+    description: "Learn the basics of web design with hands-on projects.",
+    instructor: "John Doe",
+    price: 49.99,
+    image: image_1,
+  },
+  {
+    id: 6,
+    title: "Web Design Fundamentals",
+    description: "Learn the basics of web design with hands-on projects.",
+    instructor: "John Doe",
+    price: 49.99,
+    image: image_2,
+  },
+];

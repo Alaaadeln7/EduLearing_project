@@ -1,2 +1,11 @@
 @import "tailwindcss";
 @plugin "daisyui";
+
+.input-group input:focus {
+  outline: none;
+  box-shadow: none;
+}
+.checkbox:focus {
+  outline: none;
+  box-shadow: none;
+}

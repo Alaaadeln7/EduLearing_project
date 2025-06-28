@@ -3,7 +3,7 @@ import heroImage from "../../assets/landingpage.jpg";
 
 const HeroSection = () => {
   return (
-    <section className="bg-base-100 py-16">
+    <section id="home" className="bg-base-100 py-16">
       <div className="max-w-7xl mx-auto px-4 text-center">
         <div className="flex items-center justify-center mb-4">
           <span className="bg-orange-100 p-4 rounded-sm mx-2">

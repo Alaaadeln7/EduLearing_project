@@ -3,7 +3,7 @@ import TechCard from "./TechCard";
 
 const TechSection = () => {
   return (
-    <section className="py-16 bg-base-200">
+    <section id="courses" className="py-16 bg-base-200">
       <div className="max-w-7xl mx-auto px-4 text-center">
         <h2 className="text-3xl font-bold mb-4">Our Trendy Technology</h2>
         <p className="text-gray-600 mb-8">

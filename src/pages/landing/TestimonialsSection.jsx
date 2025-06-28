@@ -1,29 +1,6 @@
-import React from "react";
+import { testimonialsData } from "../../constants/index";
 
 const TestimonialsSection = () => {
-  const testimonialsData = [
-    {
-      text: "The web design course provided a solid foundation for me. The instructors were knowledgeable and supportive, and the interactive learning environment was engaging. I highly recommend it!",
-      author: "Sarah L",
-      image: "https://i.pravatar.cc/100",
-    },
-    {
-      text: "The UX/UI design course exceeded my expectations. The instructor's expertise and practical assignments helped me improve my design skills. I feel more confident in my career now. Thank you!",
-      author: "Josiah M",
-      image: "https://i.pravatar.cc/400",
-    },
-    {
-      text: "The mobile app development course was fantastic! The step-by-step tutorials and hands-on projects helped me grasp the concepts easily. I'm now building my own app. Great course!",
-      author: "Emily R",
-      image: "https://i.pravatar.cc/300",
-    },
-    {
-      text: "I enrolled in the graphic design course as a beginner, and it was the perfect start. The instructor's guidance and feedback improved my design abilities significantly. I'm grateful for this course!",
-      author: "Michael K",
-      image: "https://i.pravatar.cc/200",
-    },
-  ];
-
   return (
     <section className="py-16 bg-gray-100">
       <div className="max-w-7xl mx-auto px-4 text-center">
@@ -32,7 +9,7 @@ const TestimonialsSection = () => {
           Our students' opinions are presented in it.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {testimonialsData.map((testimonial, index) => (
+          {testimonialsData?.map((testimonial, index) => (
             <div
               key={index}
               className="card bg-white shadow-md p-6 rounded-lg text-left "

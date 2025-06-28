@@ -5,8 +5,10 @@ import * as Yup from "yup";
 import { toast, Toaster } from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { Mail, Lock, Eye, EyeOff } from "lucide-react";
+import { useAuthStore } from "../../stores/useAuthStore";
 
 const LoginPage = () => {
+  const { login } = useAuthStore((state) => state);
   const [showPassword, setShowPassword] = useState(false);
   const formik = useFormik({
     initialValues: {
@@ -17,9 +19,15 @@ const LoginPage = () => {
       email: Yup.string().email("Invalid email").required("Email is required"),
       password: Yup.string().required("Password is required"),
     }),
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
       toast.success("Logged in successfully!");
       console.log(values);
+      try {
+        let res = await login(values);
+        console.log(res);
+      } catch (error) {
+        console.error(error.message);
+      }
     },
     validateOnChange: true,
     validateOnBlur: true,

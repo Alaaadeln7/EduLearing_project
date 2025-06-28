@@ -3,7 +3,7 @@ import { skillsData } from "../../constants/index";
 
 const SkillsSection = () => {
   return (
-    <section className="py-16 bg-base-300">
+    <section id="skills" className="py-16 bg-base-300">
       <div className="max-w-7xl mx-auto px-14">
         <h2 className="text-3xl font-bold mb-4">Skills</h2>
         <p className="text-gray-600 mb-8">

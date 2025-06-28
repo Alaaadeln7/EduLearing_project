@@ -16,6 +16,11 @@ import Footer from "./components/Footer";
 import { AnimatePresence, motion as Motion } from "framer-motion";
 import Policy from "./pages/Policy";
 import TermsOfUse from "./pages/TermsOfUse";
+import Contact from "./pages/contact/Contact";
+import Courses from "./pages/courses/Courses";
+import About from "./pages/about/About";
+import Profile from "./pages/profile/Profile";
+import Cart from "./pages/cart/Cart";
 
 // Animation variants
 const pageVariants = {
@@ -140,6 +145,76 @@ const AnimatedRoutes = () => {
               transition={pageTransition}
             >
               <TermsOfUse />
+            </Motion.div>
+          }
+        />
+        <Route
+          path="/contact"
+          element={
+            <Motion.div
+              initial="initial"
+              animate="in"
+              exit="out"
+              variants={pageVariants}
+              transition={pageTransition}
+            >
+              <Contact />
+            </Motion.div>
+          }
+        />
+        <Route
+          path="/courses"
+          element={
+            <Motion.div
+              initial="initial"
+              animate="in"
+              exit="out"
+              variants={pageVariants}
+              transition={pageTransition}
+            >
+              <Courses />
+            </Motion.div>
+          }
+        />
+        <Route
+          path="/about"
+          element={
+            <Motion.div
+              initial="initial"
+              animate="in"
+              exit="out"
+              variants={pageVariants}
+              transition={pageTransition}
+            >
+              <About />
+            </Motion.div>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <Motion.div
+              initial="initial"
+              animate="in"
+              exit="out"
+              variants={pageVariants}
+              transition={pageTransition}
+            >
+              <Profile />
+            </Motion.div>
+          }
+        />
+        <Route
+          path="/cart"
+          element={
+            <Motion.div
+              initial="initial"
+              animate="in"
+              exit="out"
+              variants={pageVariants}
+              transition={pageTransition}
+            >
+              <Cart />
             </Motion.div>
           }
         />
