@@ -12,7 +12,7 @@ export const useCoursesStore = create((set) => ({
 
     try {
       const response = await axios.get(
-        `${import.meta.env.VITE_BACKEND_URL}/Course`
+        "http://e-learningproject.runasp.net/api/Course"
       );
       set({ courses: response?.data?.data, loading: false });
     } catch (error) {
@@ -24,7 +24,7 @@ export const useCoursesStore = create((set) => ({
     set({ loading: true, error: null });
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/Course`,
+        "http://e-learningproject.runasp.net/api/Course",
         data
       );
       set({ courses: response?.data?.data, loading: false });
@@ -37,7 +37,7 @@ export const useCoursesStore = create((set) => ({
     set({ loading: true, error: null });
     try {
       const response = await axios.get(
-        `${import.meta.env.VITE_BACKEND_URL}/Course/${id}`
+        `http://e-learningproject.runasp.net/api/Course/${id}`
       );
       set({ course: response?.data, loading: false });
     } catch (error) {

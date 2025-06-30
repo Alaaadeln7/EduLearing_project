@@ -37,7 +37,7 @@ export const useAuthStore = create(
         set({ loading: true, error: null });
         try {
           const { data } = await axios.post(
-            `${import.meta.env.VITE_BACKEND_URL}/Auth/Login`,
+            `http://e-learningproject.runasp.net/api/Auth/Login`,
             credentials
           );
           console.log(data);
@@ -61,7 +61,7 @@ export const useAuthStore = create(
         console.log(userData);
         try {
           const { data } = await axios.post(
-            `${import.meta.env.VITE_BACKEND_URL}/Auth/Register`,
+            `http://e-learningproject.runasp.net/api/Auth/Register`,
 
             userData
           );
@@ -105,71 +105,6 @@ export const useAuthStore = create(
       //     toast.success("Logged out successfully");
       //   }
       // },
-
-      // Forgot password
-      forgotPassword: async (email) => {
-        set({ loading: true, error: null });
-        try {
-          await axios.post(
-            `${import.meta.env.VITE_BACKEND_URL}/auth/forgot-password`,
-            { email }
-          );
-          toast.success("Password reset link sent to your email");
-          set({ loading: false });
-        } catch (error) {
-          const message = error.response?.data?.message || error.message;
-          set({ error: message, loading: false });
-          toast.error(message);
-          throw error;
-        }
-      },
-
-      // Reset password
-      resetPassword: async ({ token, newPassword }) => {
-        set({ loading: true, error: null });
-        try {
-          await axios.post(
-            `${import.meta.env.VITE_BACKEND_URL}/auth/reset-password`,
-            { token, newPassword }
-          );
-          toast.success("Password reset successfully");
-          set({ loading: false });
-        } catch (error) {
-          const message = error.response?.data?.message || error.message;
-          set({ error: message, loading: false });
-          toast.error(message);
-          throw error;
-        }
-      },
-
-      // Check authentication status
-      checkAuth: async () => {
-        const token = get().token;
-        if (!token) return false;
-
-        set({ loading: true });
-        try {
-          const { data } = await axios.get(
-            `${import.meta.env.VITE_BACKEND_URL}/auth/me`,
-            {
-              headers: {
-                Authorization: `Bearer ${token}`,
-              },
-            }
-          );
-          set({ user: data.user, isAuthenticated: true, loading: false });
-          return true;
-        } catch (error) {
-          set({
-            user: null,
-            token: null,
-            isAuthenticated: false,
-            loading: false,
-          });
-          console.error("Authentication error:", error);
-          return false;
-        }
-      },
     }),
     {
       name: "auth-storage", // LocalStorage key
