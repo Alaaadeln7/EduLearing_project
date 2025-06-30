@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
+import { useAuthStore } from "../../stores/useAuthStore";
 
 const ProfileCard = () => {
+  const { user } = useAuthStore((state) => state);
+  console.log(user);
   return (
     <div className="bg-base-100 rounded-lg shadow-md p-6 w-full max-w-xs">
       {/* Profile Image Section */}
@@ -24,30 +27,32 @@ const ProfileCard = () => {
         {/* Name Card */}
         <div className="bg-gray-50 p-3 rounded-lg">
           <p className="text-xs text-gray-500 mb-1">Your Name</p>
-          <p className="font-medium">Omar</p>
+          <p className="font-medium">
+            {user?.firstName + " " + user?.lastName}
+          </p>
         </div>
 
         {/* Email Card */}
         <div className="bg-gray-50 p-3 rounded-lg">
           <p className="text-xs text-gray-500 mb-1">Email</p>
-          <p className="font-medium">ok@example.com</p>
+          <p className="font-medium">{user?.email}</p>
         </div>
 
         {/* Phone Card */}
         <div className="bg-gray-50 p-3 rounded-lg">
           <p className="text-xs text-gray-500 mb-1">Phone Number</p>
-          <p className="font-medium">+123456789</p>
+          <p className="font-medium">{user?.phoneNumber || "N/A"}</p>
         </div>
 
         {/* About Card */}
         <div className="bg-gray-50 p-3 rounded-lg">
           <p className="text-xs text-gray-500 mb-1">
-            About <span className="text-orange-500 font-semibold">Omar</span>
+            About{" "}
+            <span className="text-orange-500 font-semibold">
+              {user?.firstName}
+            </span>
           </p>
-          <p className="text-sm text-gray-700">
-            Lorem ipsum dolor sit amet consectetur. Fusce auctor ac orci eu quis
-            ipsum dolor sit amet consectetur.
-          </p>
+          <p className="text-sm text-gray-700">{user?.description || "N/A"}</p>
         </div>
       </div>
 

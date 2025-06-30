@@ -21,6 +21,10 @@ import Courses from "./pages/courses/Courses";
 import About from "./pages/about/About";
 import Profile from "./pages/profile/Profile";
 import Cart from "./pages/cart/Cart";
+import PaymentPage from "./pages/payment/PaymentPage";
+import CreateCourse from "./pages/courses/CreateCourse";
+import { useAuthStore } from "./stores/useAuthStore";
+import DetailsCourse from "./pages/courses/DetailsCourse";
 
 // Animation variants
 const pageVariants = {
@@ -218,16 +222,61 @@ const AnimatedRoutes = () => {
             </Motion.div>
           }
         />
+        <Route
+          path="/payment"
+          element={
+            <Motion.div
+              initial="initial"
+              animate="in"
+              exit="out"
+              variants={pageVariants}
+              transition={pageTransition}
+            >
+              <PaymentPage />
+            </Motion.div>
+          }
+        />
+        <Route
+          path="/create-course"
+          element={
+            <Motion.div
+              initial="initial"
+              animate="in"
+              exit="out"
+              variants={pageVariants}
+              transition={pageTransition}
+            >
+              <CreateCourse />
+            </Motion.div>
+          }
+        />
+        <Route
+          path="/courses/:id"
+          element={
+            <Motion.div
+              initial="initial"
+              animate="in"
+              exit="out"
+              variants={pageVariants}
+              transition={pageTransition}
+            >
+              <DetailsCourse />
+            </Motion.div>
+          }
+        />
       </Routes>
     </AnimatePresence>
   );
 };
 
 export default function App() {
+  const { initializeAuth } = useAuthStore((state) => state);
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", "light");
   }, []);
-
+  useEffect(() => {
+    initializeAuth();
+  }, [initializeAuth]);
   return (
     <Router>
       <Motion.div

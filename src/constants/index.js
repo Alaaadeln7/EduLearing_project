@@ -185,3 +185,14 @@ export const coursesData = [
     image: image_2,
   },
 ];
+
+export const categories = [
+  "Programming",
+  "Data Science",
+  "Machine Learning",
+  "Web Development",
+  "Mobile Development",
+  "Design",
+];
+
+export const languages = ["English", "العربية", "Spanish", "French", "German"];

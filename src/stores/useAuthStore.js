@@ -2,39 +2,50 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-
+import Cookies from "js-cookie";
 export const useAuthStore = create(
   persist(
     (set, get) => ({
       user: null,
       token: null,
-      isAuthenticated: true,
+      isAuthenticated: false,
       loading: false,
       error: null,
-      clearAuth: () =>
+      clearAuth: () => {
+        Cookies.remove("token");
         set({
           user: null,
           token: null,
           isAuthenticated: false,
-        }),
+        });
+      },
+
+      initializeAuth: () => {
+        const token = Cookies.get("token");
+        console.log(token);
+        if (token) {
+          set({
+            token,
+            isAuthenticated: true,
+          });
+          get().checkAuth();
+        }
+      },
 
       // Login user
       login: async (credentials) => {
         set({ loading: true, error: null });
         try {
           const { data } = await axios.post(
-            `${import.meta.env.VITE_VITE_BACKEND_URL}/Auth/Login`,
+            `${import.meta.env.VITE_BACKEND_URL}/Auth/Login`,
             credentials
           );
-
+          console.log(data);
           set({
-            user: data.user,
-            token: data.token,
+            user: data,
             isAuthenticated: true,
             loading: false,
           });
-
-          toast.success("Login successful!");
           return data;
         } catch (error) {
           const message = error.response?.data?.message || error.message;
@@ -47,12 +58,13 @@ export const useAuthStore = create(
       // Register new user
       register: async (userData) => {
         set({ loading: true, error: null });
+        console.log(userData);
         try {
           const { data } = await axios.post(
             `${import.meta.env.VITE_BACKEND_URL}/Auth/Register`,
+
             userData
           );
-          console.log(import.meta.env.VITE_BACKEND_URL);
           set({
             user: data.user,
             token: data.token,
@@ -71,28 +83,28 @@ export const useAuthStore = create(
       },
 
       // Logout user
-      logout: async () => {
-        try {
-          await axios.post(
-            `${import.meta.env.VITE_BACKEND_URL}/Auth/Logout`,
-            {},
-            {
-              headers: {
-                Authorization: `Bearer ${get().token}`,
-              },
-            }
-          );
-        } catch (error) {
-          console.error("Logout error:", error);
-        } finally {
-          set({
-            user: null,
-            token: null,
-            isAuthenticated: false,
-          });
-          toast.success("Logged out successfully");
-        }
-      },
+      // logout: async (userData) => {
+      //   try {
+      //     let { data } = await axios.post(
+      //       `${import.meta.env.VITE_BACKEND_URL}/Auth/Logout`,
+      //       { userData },
+      //       {
+      //         headers: {
+      //           Authorization: `Bearer ${get().token}`,
+      //         },
+      //       }
+      //     );
+      //   } catch (error) {
+      //     console.error("Logout error:", error);
+      //   } finally {
+      //     set({
+      //       user: null,
+      //       token: null,
+      //       isAuthenticated: false,
+      //     });
+      //     toast.success("Logged out successfully");
+      //   }
+      // },
 
       // Forgot password
       forgotPassword: async (email) => {

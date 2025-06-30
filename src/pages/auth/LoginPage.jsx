@@ -3,12 +3,13 @@ import { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { toast, Toaster } from "react-hot-toast";
-import { Link } from "react-router-dom";
-import { Mail, Lock, Eye, EyeOff } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
+import { Mail, Lock, Eye, EyeOff, Loader } from "lucide-react";
 import { useAuthStore } from "../../stores/useAuthStore";
 
 const LoginPage = () => {
-  const { login } = useAuthStore((state) => state);
+  const navigate = useNavigate();
+  const { login, loading } = useAuthStore((state) => state);
   const [showPassword, setShowPassword] = useState(false);
   const formik = useFormik({
     initialValues: {
@@ -24,7 +25,9 @@ const LoginPage = () => {
       console.log(values);
       try {
         let res = await login(values);
-        console.log(res);
+        if (res) {
+          navigate("/");
+        }
       } catch (error) {
         console.error(error.message);
       }
@@ -127,8 +130,16 @@ const LoginPage = () => {
           <button
             type="submit"
             className="btn bg-orange-500 hover:bg-orange-600 text-white w-full focus:outline-none focus:ring-0"
+            disabled={loading}
           >
-            Login
+            {loading ? (
+              <>
+                <span className="text-base-300">Loading</span>
+                <Loader className="size-5 animate-spin text-base-300" />
+              </>
+            ) : (
+              "Login"
+            )}
           </button>
 
           <div className="divider">OR</div>

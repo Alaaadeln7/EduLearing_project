@@ -1,4 +1,6 @@
-const Course = ({ title, description, instructor, price, image }) => {
+import { Link } from "react-router-dom";
+
+const Course = ({ id, title, description, instructor, price, image }) => {
   return (
     <div className="card bg-white shadow-md rounded-lg overflow-hidden transition-transform hover:scale-105">
       <figure className="h-48 overflow-hidden">
@@ -13,7 +15,9 @@ const Course = ({ title, description, instructor, price, image }) => {
           Instructor: {instructor}
         </p>
         <p className="text-orange-500 font-bold mt-2">${price}</p>
-        <button className="btn btn-orange mt-4 w-full">Enroll Now</button>
+        <Link to={`/courses/${id}`} className="btn btn-orange mt-4 w-full">
+          show more
+        </Link>
       </div>
     </div>
   );

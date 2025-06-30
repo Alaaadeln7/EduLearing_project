@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ChevronDown, Menu, ShoppingCart, X, User } from "lucide-react";
+import { ChevronDown, Menu, ShoppingCart, X, User, Plus } from "lucide-react";
 import { motion as Motion, AnimatePresence } from "framer-motion";
 import { useAuthStore } from "../stores/useAuthStore";
 
@@ -139,6 +139,12 @@ export default function Header() {
                     )}
                   </AnimatePresence>
                 </div>
+                <Link
+                  to={"/create-course"}
+                  className="btn bg-orange-500 text-white"
+                >
+                  <Plus className="size-5" /> create course
+                </Link>
               </>
             ) : (
               <>
@@ -217,6 +223,7 @@ export default function Header() {
                   >
                     Profile
                   </Link>
+
                   <button
                     onClick={() => {
                       logout();
@@ -226,6 +233,12 @@ export default function Header() {
                   >
                     Sign Out
                   </button>
+                  <Link
+                    className="btn bg-orange-500 text-white w-full text-start"
+                    to={"/create-course"}
+                  >
+                    <Plus className="size-5" /> create course
+                  </Link>
                 </>
               ) : (
                 <>

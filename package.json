@@ -15,6 +15,7 @@
     "axios": "^1.10.0",
     "formik": "^2.4.6",
     "framer-motion": "^12.19.1",
+    "js-cookie": "^3.0.5",
     "lucide": "^0.523.0",
     "lucide-react": "^0.523.0",
     "postcss": "^8.5.6",
